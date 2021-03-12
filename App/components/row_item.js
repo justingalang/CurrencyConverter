@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     color: colors.text
 
   },
-  seperator: {
+  separator: {
     backgroundColor: colors.border,
     height: StyleSheet.hairlineWidth,
     marginLeft: 20
@@ -31,8 +31,8 @@ export const RowItem = ({ text, rightIcon, onPress }) => {
   )
 };
 
-export const RowSeperator = () => {
+export const RowSeparator = () => {
   return (
-    <View style={styles.seperator} />
+    <View style={styles.separator} />
   )
 }

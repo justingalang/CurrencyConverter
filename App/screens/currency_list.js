@@ -2,24 +2,26 @@ import React from 'react';
 import { StatusBar, FlatList, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { RowItem, RowSeperator } from "../components/row_item";
+import { RowItem, RowSeparator } from "../components/row_item";
 import colors from "../constants/colors";
 import currencies from "../data/currencies.json";
 
 export default ({ navigation }) => {
   const insets = useSafeAreaInsets();
   return (
-    <View style={{
-      flex: 1,
-      backgroundColor: colors.white
-    }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colors.white
+      }}
+    >
       <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
       <FlatList
         data={currencies}
         renderItem={({ item }) => {
           return (
             <RowItem
-              title={item}
+              text={item}
               onPress={() => {
                 navigation.pop();
               }}
@@ -27,7 +29,7 @@ export default ({ navigation }) => {
           );
         }}
         keyExtractor={(item) => item}
-        ItemSeperatorComponent={() => <RowSeperator />}
+        ItemseparatorComponent={() => <RowSeparator />}
         ListFooterComponent={() => (
           <View style={{ paddingBottom: insets.bottom }} />
         )}

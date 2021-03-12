@@ -8,16 +8,15 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  Touchable,
 } from 'react-native';
 import { format } from 'date-fns';
 import { Entypo } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 import colors from '../constants/colors';
 import { ConversionInput } from '../components/conversion_input';
 import { Button } from '../components/button';
 import { KeyboardSpacer } from '../components/keyboard_spacer';
-
 
 const screen = Dimensions.get('window');
 

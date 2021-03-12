@@ -4,7 +4,7 @@ import { SafeAreaView, ScrollView, Linking, Alert, StatusBar } from 'react-nativ
 import { Entypo } from '@expo/vector-icons';
 
 import colors from '../constants/colors';
-import { RowItem, RowSeperator } from '../components/row_item';
+import { RowItem, RowSeparator } from '../components/row_item';
 
 
 const openURL = (url) => {
@@ -15,7 +15,7 @@ const openURL = (url) => {
 
 export default () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
       <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
       <ScrollView>
         <RowItem
@@ -26,7 +26,7 @@ export default () => {
           }
         />
 
-        <RowSeperator />
+        <RowSeparator />
 
         <RowItem
           text="React Native Basics"
@@ -38,7 +38,7 @@ export default () => {
           }
         />
 
-        <RowSeperator />
+        <RowSeparator />
 
         <RowItem
           text="React Native by Example"
