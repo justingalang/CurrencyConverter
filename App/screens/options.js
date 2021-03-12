@@ -4,7 +4,7 @@ import { SafeAreaView, ScrollView, Linking, Alert } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 import colors from '../constants/colors';
-import { RowItem, RowSeperator } from '../components/rowItem';
+import { RowItem, RowSeperator } from '../components/row_item';
 
 
 const openURL = (url) => {

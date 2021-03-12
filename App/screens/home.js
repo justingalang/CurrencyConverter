@@ -3,9 +3,9 @@ import { View, StyleSheet, StatusBar, Image, Dimensions, Text, ScrollView, } fro
 import { format } from 'date-fns';
 
 import colors from '../constants/colors';
-import { ConversionInput } from '../components/conversionInput';
+import { ConversionInput } from '../components/conversion_input';
 import { Button } from '../components/button';
-import { KeyboardSpacer } from '../components/keyboardSpacer';
+import { KeyboardSpacer } from '../components/keyboard_spacer';
 
 
 const screen = Dimensions.get('window');
