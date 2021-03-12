@@ -70,8 +70,6 @@ export default ({ navigation }) => {
     baseCurrency,
     quoteCurrency,
     swapCurrencies,
-    setBaseCurrency,
-    setQuoteCurrency
   } = useContext(ConversionContext);
 
   const [scrollEnabled, setScrollEnabled] = useState(false);
@@ -107,8 +105,7 @@ export default ({ navigation }) => {
             onButtonPress={() =>
               navigation.push("CurrencyList", {
                 title: "Base Currency",
-                activeCurrency: baseCurrency,
-                onChange: (currency) => setBaseCurrency(currency)
+                isBaseCurrency: true
               })
             }
             onChangeText={(text) => setValue(text)}
@@ -122,8 +119,7 @@ export default ({ navigation }) => {
             onButtonPress={() =>
               navigation.push("CurrencyList", {
                 title: "Quote Currency",
-                activeCurrency: quoteCurrency,
-                onChange: (currency) => setQuoteCurrency(currency)
+                isBaseCurrency: false,
               })
             }
             editable={false}

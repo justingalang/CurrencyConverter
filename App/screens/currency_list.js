@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StatusBar, FlatList, View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Entypo } from '@expo/vector-icons';
@@ -6,6 +6,7 @@ import { Entypo } from '@expo/vector-icons';
 import { RowItem, RowSeparator } from "../components/row_item";
 import colors from "../constants/colors";
 import currencies from "../data/currencies.json";
+import { ConversionContext } from "../util/conversion_context";
 
 const styles = StyleSheet.create({
   icon: {
@@ -21,6 +22,11 @@ const styles = StyleSheet.create({
 export default ({ navigation, route = {} }) => {
   const insets = useSafeAreaInsets();
   const params = route.params || {}; //In case it doesn't exist
+  const {
+    setBaseCurrency,
+    setQuoteCurrency,
+    baseCurrency,
+    quoteCurrency } = useContext(ConversionContext);
 
   return (
     <View
@@ -33,15 +39,23 @@ export default ({ navigation, route = {} }) => {
       <FlatList
         data={currencies}
         renderItem={({ item }) => {
-          const selected = params.activeCurrency === item;
+          let selected = false;
+
+          if (params.isBaseCurrency && item === baseCurrency) {
+            selected = true;
+          } else if (!params.isBaseCurrency && item === quoteCurrency) {
+            selected = true;
+          }
           return (
             <RowItem
               text={item}
               onPress={() => {
-                if (params.onChange) {
-                  params.onChange(item);
+                if (params.isBaseCurrency) {
+                  setBaseCurrency(item);
+                } else {
+                  setQuoteCurrency(item);
                 }
-                navigation.pop()
+                navigation.pop();
               }}
               rightIcon={
                 selected && ( //Checks if it is true and applies View if it is
@@ -49,7 +63,6 @@ export default ({ navigation, route = {} }) => {
                     <Entypo name="check" size={20} color={colors.white} />
                   </View>
                 )
-
               }
             />
           );
