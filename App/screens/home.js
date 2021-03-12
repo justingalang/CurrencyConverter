@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, StatusBar, Image, Dimensions, Text, ScrollView, } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  StatusBar,
+  Image,
+  Dimensions,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Touchable,
+} from 'react-native';
 import { format } from 'date-fns';
-
+import { Entypo } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../constants/colors';
 import { ConversionInput } from '../components/conversion_input';
 import { Button } from '../components/button';
@@ -17,7 +28,7 @@ const styles = StyleSheet.create({
 
   },
   content: {
-    paddingTop: screen.height * 0.2,
+    paddingTop: screen.height * 0.1,
   },
   logoContainer: {
     alignItems: 'center',
@@ -43,11 +54,15 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 13,
     textAlign: "center"
+  },
+  header: {
+    alignItems: "flex-end",
+    marginHorizontal: 10
   }
 
 });
 
-export default () => {
+export default ({ navigation }) => {
   const baseCurrency = 'USD';
   const quoteCurrency = "GBP";
   const conversionRate = 0.8345;
@@ -55,11 +70,18 @@ export default () => {
 
   const [scrollEnabled, setScrollEnabled] = useState(false);
 
-
   return (
     <View style={styles.container}>
       <ScrollView scrollEnabled={scrollEnabled}>
         <StatusBar barStyle="light-content" backgroundColor={colors.blue} />
+
+        <SafeAreaView style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.push("Options")}>
+            <Entypo name="cog" size={32} color={colors.white} />
+          </TouchableOpacity>
+        </SafeAreaView>
+
+
         <View style={styles.content}>
           <View style={styles.logoContainer}>
             <Image
@@ -76,14 +98,14 @@ export default () => {
           <ConversionInput
             text={baseCurrency}
             value="123"
-            onButtonPress={() => alert("todo")}
+            onButtonPress={() => navigation.push("CurrencyList", { title: "Base Currency" })}
             onChangeText={(text) => console.log("text", text)}
             keyboardType="numeric"
           />
           <ConversionInput
             text={quoteCurrency}
             value="123"
-            onButtonPress={() => alert("todo")}
+            onButtonPress={() => navigation.push("CurrencyList", { title: "Quote Currency" })}
             editable={false}
           />
 
